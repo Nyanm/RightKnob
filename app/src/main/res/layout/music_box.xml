@@ -10,14 +10,16 @@
             android:layout_width="40sp"
             android:layout_height="24sp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/divider_btm"
             app:layout_constraintStart_toStartOf="parent"
+            android:gravity="center"
             android:layout_marginStart="16sp" />
 
     <TextView
-            android:id="@+id/text_title"
+            android:id="@+id/text_name"
             android:layout_width="0dp"
             android:layout_height="24dp"
+            android:gravity="center_vertical"
 
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent"
@@ -25,29 +27,187 @@
             android:layout_marginStart="16dp"
             app:layout_constraintEnd_toEndOf="parent"
 
-            app:layout_constraintStart_toEndOf="@+id/text_mid" />
+            app:layout_constraintStart_toEndOf="@+id/text_mid"
+            android:textSize="18sp" />
 
     <TextView
             android:id="@+id/text_artist"
             android:layout_width="0dp"
             android:layout_height="24dp"
 
-            app:layout_constraintTop_toBottomOf="@+id/text_title"
+            app:layout_constraintTop_toBottomOf="@+id/text_name"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginStart="16dp"
             app:layout_constraintStart_toEndOf="@+id/text_mid"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="4dp"
+
+            android:textSize="16sp" />
 
     <View
-            android:id="@+id/title_divider"
-            android:layout_width="280dp"
+            android:id="@+id/divider"
+            android:layout_width="0dp"
             android:layout_height="1dp"
             android:background="?android:attr/listDivider"
-
-            app:layout_constraintTop_toBottomOf="@+id/text_title"
-
             app:layout_constraintStart_toEndOf="@+id/text_mid"
+            app:layout_constraintTop_toBottomOf="@+id/text_artist"
+            android:layout_marginStart="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/text_date" />
+
+    <View
+            android:id="@+id/divider_btm"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+            android:id="@+id/text_date"
+            android:layout_width="100dp"
+            android:layout_height="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/divider_btm"
+            android:layout_marginTop="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
             android:layout_marginStart="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/text_artist" />
+            app:layout_constraintStart_toEndOf="@+id/text_mid"
+
+            android:textSize="18sp" />
+
+    <TextView
+            android:id="@+id/text_nov"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+
+            app:layout_constraintStart_toEndOf="@id/text_date"
+            android:layout_marginStart="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintBottom_toTopOf="@+id/divider_btm"
+
+            android:textSize="18sp"
+            android:textColor="@color/nov_text"
+            android:background="@color/nov" />
+
+    <TextView
+            android:id="@+id/text_adv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+
+            app:layout_constraintStart_toEndOf="@id/text_nov"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintBottom_toTopOf="@+id/divider_btm"
+
+            android:textSize="18sp"
+            android:textColor="@color/adv_text"
+            android:background="@color/adv" />
+
+    <TextView
+            android:id="@+id/text_exh"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+
+            app:layout_constraintStart_toEndOf="@id/text_adv"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintBottom_toTopOf="@+id/divider_btm"
+
+            android:textSize="18sp"
+            android:textColor="@color/exh_text"
+            android:background="@color/exh" />
+
+    <TextView
+            android:id="@+id/text_inf"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+
+            android:visibility="gone"
+
+            app:layout_constraintStart_toEndOf="@id/text_exh"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintBottom_toTopOf="@+id/divider_btm"
+
+            android:textColor="@color/inf_text"
+            android:background="@color/inf"
+            android:textSize="18sp" />
+
+    <TextView
+            android:id="@+id/text_grv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+
+            android:visibility="gone"
+
+            app:layout_constraintStart_toEndOf="@id/text_exh"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintBottom_toTopOf="@+id/divider_btm"
+
+            android:textColor="@color/grv_text"
+            android:background="@color/grv"
+            android:textSize="18sp" />
+
+    <TextView
+            android:id="@+id/text_hvn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+
+            android:visibility="gone"
+
+            app:layout_constraintStart_toEndOf="@id/text_exh"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintBottom_toTopOf="@+id/divider_btm"
+
+            android:textColor="@color/hvn_text"
+            android:background="@color/hvn"
+            android:textSize="18sp" />
+
+    <TextView
+            android:id="@+id/text_vvd"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+
+            android:visibility="gone"
+
+            app:layout_constraintStart_toEndOf="@id/text_exh"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintBottom_toTopOf="@+id/divider_btm"
+
+            android:textColor="@color/vvd_text"
+            android:background="@color/vvd"
+            android:textSize="18sp" />
+
+    <TextView
+            android:id="@+id/text_mxm"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:gravity="center"
+
+            android:visibility="gone"
+
+            app:layout_constraintStart_toEndOf="@id/text_exh"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintBottom_toTopOf="@+id/divider_btm"
+
+            android:textColor="@color/mxm_text"
+            android:background="@color/mxm"
+            android:textSize="18sp" />
+
+    <TextView
+            android:id="@+id/text_yomigana"
+            android:layout_width="0dp"
+            android:layout_height="24dp"
+            android:gravity="center_vertical"
+
+            app:layout_constraintStart_toEndOf="@id/text_date"
+            android:layout_marginStart="116dp"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintBottom_toTopOf="@+id/divider_btm"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
