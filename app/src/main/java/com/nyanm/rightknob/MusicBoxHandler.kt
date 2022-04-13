@@ -3,10 +3,12 @@ package com.nyanm.rightknob
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class SingleMusic(
+    val jkRes: Int,
     val mid: Int,
     val name: String,
     val artist: String,
@@ -25,6 +27,7 @@ class MusicBoxAdapter(private val dataList: List<SingleMusic>) :
     RecyclerView.Adapter<MusicBoxAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val viewJKRes: ImageView = view.findViewById(R.id.img_jacket)
         val viewMid: TextView = view.findViewById(R.id.text_mid)
         val viewName: TextView = view.findViewById(R.id.text_name)
         val viewArtist: TextView = view.findViewById(R.id.text_artist)
@@ -48,6 +51,7 @@ class MusicBoxAdapter(private val dataList: List<SingleMusic>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val musicItem = dataList[position]
         // set unchangeable data
+        holder.viewJKRes.setImageResource(musicItem.jkRes)
         holder.viewMid.text = musicItem.mid.toString()
         holder.viewName.text = musicItem.name
         holder.viewArtist.text = musicItem.artist

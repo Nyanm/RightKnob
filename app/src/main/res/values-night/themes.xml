@@ -4,7 +4,7 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/vvd</item>
         <item name="colorPrimaryVariant">@color/vvd_text</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/hvn</item>
         <item name="colorSecondaryVariant">@color/hvn_text</item>

@@ -9,7 +9,6 @@ import android.view.MenuItem
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.main_activity.*
 import java.util.*
@@ -56,8 +55,7 @@ class MainActivity : AppCompatActivity() {
 
                     // search result is empty
                     if (resList.isEmpty()) {
-                        Toast.makeText(this@MainActivity, "Search failed.", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(this@MainActivity, "No result found", Toast.LENGTH_SHORT).show()
                         return true
                     }
 
@@ -67,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                         "${resList.size} result(s) found.",
                         Toast.LENGTH_SHORT
                     ).show()
+                    var musicJKRes: Int
                     var musicName: String
                     var musicArtist: String
                     var musicYomigana: String
@@ -97,7 +96,11 @@ class MainActivity : AppCompatActivity() {
                             musicINF = curSG.getInt(curSG.getColumnIndex("INF_LV"))
                             musicMXM = curSG.getInt(curSG.getColumnIndex("MXM_LV"))
 
+                            musicJKRes = resources.getIdentifier("s_$mid", "drawable", packageName)
+                            if (musicJKRes == 0) musicJKRes = R.drawable.s_dummy
+
                             val curMusic = SingleMusic(
+                                musicJKRes,
                                 mid,
                                 musicName,
                                 musicArtist,
@@ -111,7 +114,7 @@ class MainActivity : AppCompatActivity() {
                                 musicINF,
                                 musicMXM
                             )
-                            Log.d("MainActivity", "Collecting data: '$musicName' by '$musicArtist'")
+                            Log.d("MainActivity", "Collecting data: '$musicName' by '$musicArtist', jacket: $musicJKRes")
                             dataList.add(curMusic)
                         }
                         curSG.close()
