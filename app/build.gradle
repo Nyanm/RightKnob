@@ -11,8 +11,8 @@ android {
         applicationId "com.nyanm.rightknob"
         minSdk 21
         targetSdk 32
-        versionCode 1
-        versionName "0.2.0.2022021400"
+        versionCode 4
+        versionName "0.3.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

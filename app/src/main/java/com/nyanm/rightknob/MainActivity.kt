@@ -2,6 +2,10 @@ package com.nyanm.rightknob
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
+import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -17,13 +21,28 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 
+    // initialize metadata of database
+    private var metaVer: Int = 0
+    private var gameVer: Int = 0
+    private var fixVer: Int = 0
+
     @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
 
-        val dbHelper = DatabaseHelper(this)
+        val dbHelper = DatabaseHelper(this, packageManager.getPackageInfo(packageName, 0).versionCode)
         val database = dbHelper.openDatabase()
+
+        val metaQuery = "SELECT * FROM METADATA"
+        val cursorMeta: Cursor = database.rawQuery(metaQuery, null)
+        if (cursorMeta.moveToFirst()) {
+            metaVer = cursorMeta.getInt(cursorMeta.getColumnIndex("METADATA_VER"))
+            gameVer = cursorMeta.getInt(cursorMeta.getColumnIndex("SDVX_VER"))
+            fixVer = cursorMeta.getInt(cursorMeta.getColumnIndex("FIX_VER"))
+        }
+        cursorMeta.close()
+
         recycle.layoutManager = LinearLayoutManager(this)
 
         search_bar.setOnQueryTextListener(
@@ -41,9 +60,9 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     // search for mid
-                    val sqlQuery = "SELECT MID FROM MUSIC WHERE MEME LIKE '%${p0}%'"
+                    val searchQuery = "SELECT MID FROM MUSIC WHERE MEME LIKE '%${p0}%'"
                     val resList = mutableListOf<Int>()
-                    val cursorMid = database.rawQuery(sqlQuery, null)
+                    val cursorMid = database.rawQuery(searchQuery, null)
 
                     if (cursorMid.moveToFirst()) {
                         do {
@@ -55,7 +74,8 @@ class MainActivity : AppCompatActivity() {
 
                     // search result is empty
                     if (resList.isEmpty()) {
-                        Toast.makeText(this@MainActivity, "No result found", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity, "No result found", Toast.LENGTH_SHORT)
+                            .show()
                         return true
                     }
 
@@ -114,7 +134,10 @@ class MainActivity : AppCompatActivity() {
                                 musicINF,
                                 musicMXM
                             )
-                            Log.d("MainActivity", "Collecting data: '$musicName' by '$musicArtist', jacket: $musicJKRes")
+                            Log.d(
+                                "MainActivity",
+                                "Collecting data: '$musicName' by '$musicArtist', jacket: $musicJKRes"
+                            )
                             dataList.add(curMusic)
                         }
                         curSG.close()
@@ -139,7 +162,15 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.d("MainActivity", "Menu ${item.itemId} selected.")
         when (item.itemId) {
-            R.id.about -> startActivity(Intent(".ACTION_ABOUT"))
+            R.id.about -> {
+                val intentAbout = Intent(".ACTION_ABOUT")
+
+                intentAbout.putExtra("metaVer", metaVer)
+                intentAbout.putExtra("gameVer", gameVer)
+                intentAbout.putExtra("fixVer", fixVer)
+                intentAbout.putExtra("pkgVerName", packageManager.getPackageInfo(packageName, 0).versionName)
+                startActivity(intentAbout)
+            }
         }
         return true
     }

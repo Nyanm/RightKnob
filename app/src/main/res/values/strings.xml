@@ -2,8 +2,6 @@
     <string name="app_name">Right Knob</string>
 
     <string name="about">About</string>
-    <string name="about_ver">Version  0.2.0</string>
-        <string name="about_db_ver">DB Version  2022021400</string>
     <string name="about_author">Powered by</string>
     <string name="about_dev_text">Developer</string>
     <string name="about_dsg_text">Logo Designer</string>
