@@ -2,10 +2,7 @@ package com.nyanm.rightknob
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -17,6 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.main_activity.*
 import java.util.*
 import kotlin.collections.ArrayList
+
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +31,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+
+        AppCenter.start(application, getString(R.string.AppCenterKey), Analytics::class.java, Crashes::class.java)
 
         val dbHelper = DatabaseHelper(this, packageManager.getPackageInfo(packageName, 0).versionCode)
         val database = dbHelper.openDatabase()

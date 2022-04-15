@@ -9,7 +9,7 @@
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:queryHint="Anything about it"/>
+            android:queryHint="@string/main_search_hint"/>
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle"

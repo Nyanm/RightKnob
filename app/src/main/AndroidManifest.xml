@@ -13,7 +13,7 @@
         <activity
                 android:name=".MainActivity"
                 android:exported="true"
-                android:label="Right Knob">
+                android:label="@string/app_name">
             <intent-filter>
                 <action android:name='android.intent.action.MAIN' />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -22,7 +22,7 @@
 
         <activity
                 android:name=".AboutActivity"
-                android:label="Behind the code"
+                android:label="@string/manifest_about"
                 android:exported="false">
             <intent-filter>
                 <action android:name=".ACTION_ABOUT" />
@@ -32,7 +32,7 @@
 
         <activity
                 android:name=".UncannyActivity"
-                android:label="Ali-pay is also recommended!"
+                android:label="@string/manifest_uncanny"
                 android:exported="false">
             <intent-filter>
                 <action android:name=".ACTION_UNCANNY" />
