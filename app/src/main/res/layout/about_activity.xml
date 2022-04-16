@@ -4,6 +4,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+    <com.google.android.material.card.MaterialCardView
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+
+            app:cardCornerRadius="12dp"
+            app:cardElevation="3dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/about_app_name"
+            android:layout_marginBottom="64dp">
+
+        <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/vvd"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_foreground"/>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
     <TextView
             android:id="@+id/about_app_name"
             android:layout_width="wrap_content"
@@ -48,23 +71,13 @@
             app:layout_constraintHorizontal_bias="0.15" />
 
     <TextView
-            android:id="@+id/about_dev_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            app:layout_constraintStart_toStartOf="@id/about_author"
-            android:layout_marginTop="12dp"
-            app:layout_constraintTop_toBottomOf="@id/about_author"
-            android:text="@string/about_dev_text" />
-
-    <TextView
             android:id="@+id/about_dev_val"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+
             app:layout_constraintStart_toStartOf="@id/about_author"
             android:layout_marginTop="4dp"
-            app:layout_constraintTop_toBottomOf="@+id/about_dev_text"
+            app:layout_constraintTop_toBottomOf="@+id/about_author"
             android:text="@string/about_dev_val" />
 
     <TextView
@@ -77,7 +90,7 @@
             android:layout_marginTop="12dp"
             android:text="@string/about_dsg_text"
 
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     <TextView
             android:id="@+id/about_dsg_val"
@@ -89,7 +102,7 @@
             app:layout_constraintTop_toBottomOf="@+id/about_dsg_text"
             android:text="@string/about_dsg_val"
 
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
     <TextView
             android:id="@+id/about_source"
@@ -108,8 +121,28 @@
             app:layout_constraintStart_toStartOf="@id/about_author"
             android:layout_marginTop="4dp"
             app:layout_constraintTop_toBottomOf="@+id/about_source"
-            android:layout_marginStart="24dp"
             android:autoLink="web"
             android:text="@string/about_github_url" />
+
+    <TextView
+            android:id="@+id/about_release"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/about_author"
+            app:layout_constraintTop_toBottomOf="@id/about_github_url"
+            android:layout_marginTop="24dp"
+            android:textSize="16sp"
+            android:text="@string/about_release" />
+
+    <TextView
+            android:id="@+id/about_release_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/about_author"
+            android:layout_marginTop="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/about_release"
+
+            android:autoLink="web"
+            android:text="@string/about_release_url" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

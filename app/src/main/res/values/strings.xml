@@ -3,24 +3,24 @@
 
     <string name="main_search_hint" translatable="false">Anything about it</string>
 
+    <string name="music_box_date" translatable="false">%1$d-%2$d-%3$d</string>
+
     <string name="about">About</string>
-    <string name="about_author" translatable="false">Powered by</string>
-    <string name="about_dev_text">Developer</string>
+    <string name="about_author">Developer</string>
     <string name="about_dsg_text">Logo Designer</string>
     <string name="about_dev_val" translatable="false">「極惡」吃人拉拉肥 Nanko aka. Nyanm</string>
     <string name="about_dsg_val" translatable="false">神暴龍天 Achernar</string>
-    <string name="about_source">More Information</string>
+    <string name="about_source">Source Code</string>
+    <string name="about_release">Release</string>
     <string name="about_github_url" translatable="false">github.com/Nyanm/RightKnob</string>
+    <string name="about_release_url" translatable="false">install.appcenter.ms/users/nyanm/apps/right-knob/distribution_groups/user</string>
 
     <string name="about_ver">Version  %1$s</string>
     <string name="about_db_ver">DB Version  %1$d.%2$d</string>
 
     <string name="uncanny_text">Congratulations! You\'ve found the dark side of the moon! Here is a donate page where you can buy the developer a cup of coffee☕ if you like this application.</string>
 
-    <string name="uncanny_img_des" translatable="false">QR code for uncanny website</string>
-    <string name="img_jk_des" translatable="false">Small size jacket</string>
-
-    <string name="manifest_about">Behind the code</string>
     <string name="manifest_uncanny">Ali-pay is also recommended!</string>
+
 
 </resources>

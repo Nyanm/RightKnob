@@ -5,8 +5,10 @@ import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
+import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -29,12 +31,22 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("Range")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+        setSupportActionBar(tool_bar)
 
-        AppCenter.start(application, getString(R.string.AppCenterKey), Analytics::class.java, Crashes::class.java)
+        AppCenter.start(
+            application,
+            getString(R.string.AppCenterKey),
+            Analytics::class.java,
+            Crashes::class.java
+        )
 
-        val dbHelper = DatabaseHelper(this, packageManager.getPackageInfo(packageName, 0).versionCode)
+        val kanaMap = getKanaMap()
+
+        val dbHelper =
+            DatabaseHelper(this, packageManager.getPackageInfo(packageName, 0).versionCode)
         val database = dbHelper.openDatabase()
 
         val metaQuery = "SELECT * FROM METADATA"
@@ -91,7 +103,7 @@ class MainActivity : AppCompatActivity() {
                     var musicJKRes: Int
                     var musicName: String
                     var musicArtist: String
-                    var musicYomigana: String
+                    var musicFirstKana: Char
                     var musicDate: Int
                     var musicVersion: Int
                     var musicInfVer: Int
@@ -109,7 +121,7 @@ class MainActivity : AppCompatActivity() {
                         if (curSG.moveToFirst()) {
                             musicName = curSG.getString(curSG.getColumnIndex("NAME"))
                             musicArtist = curSG.getString(curSG.getColumnIndex("ARTIST"))
-                            musicYomigana = curSG.getString(curSG.getColumnIndex("NAME_YO"))
+                            val musicYomigana = curSG.getString(curSG.getColumnIndex("NAME_YO"))
                             musicDate = curSG.getInt(curSG.getColumnIndex("DATE"))
                             musicVersion = curSG.getInt(curSG.getColumnIndex("VERSION"))
                             musicInfVer = curSG.getInt(curSG.getColumnIndex("INF_VER"))
@@ -122,12 +134,14 @@ class MainActivity : AppCompatActivity() {
                             musicJKRes = resources.getIdentifier("s_$mid", "drawable", packageName)
                             if (musicJKRes == 0) musicJKRes = R.drawable.s_dummy
 
+                            musicFirstKana = kanaMap[musicYomigana[0]] ?: '无'
+
                             val curMusic = SingleMusic(
                                 musicJKRes,
                                 mid,
                                 musicName,
                                 musicArtist,
-                                musicYomigana,
+                                musicFirstKana,
                                 musicDate,
                                 musicVersion,
                                 musicInfVer,
@@ -145,7 +159,7 @@ class MainActivity : AppCompatActivity() {
                         }
                         curSG.close()
                     }
-                    val adapter = MusicBoxAdapter(dataList)
+                    val adapter = MusicBoxAdapter(dataList, this@MainActivity)
                     recycle.adapter = adapter
                     return true
                 }
@@ -157,21 +171,44 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    private fun getKanaMap(): Map<Char, Char> {
+        val mapKana = mutableMapOf<Char, Char>()
+        val half = charArrayOf(
+            'ｦ', 'ｧ', 'ｨ', 'ｩ', 'ｪ', 'ｫ', 'ｬ', 'ｭ', 'ｮ', 'ｯ', 'ｰ', 'ｱ', 'ｲ',
+            'ｳ', 'ｴ', 'ｵ', 'ｶ', 'ｷ', 'ｸ', 'ｹ', 'ｺ', 'ｻ', 'ｼ', 'ｽ', 'ｾ', 'ｿ',
+            'ﾀ', 'ﾁ', 'ﾂ', 'ﾃ', 'ﾄ', 'ﾅ', 'ﾆ', 'ﾇ', 'ﾈ', 'ﾉ', 'ﾊ', 'ﾋ', 'ﾌ',
+            'ﾍ', 'ﾎ', 'ﾏ', 'ﾐ', 'ﾑ', 'ﾒ', 'ﾓ', 'ﾔ', 'ﾕ', 'ﾖ', 'ﾗ', 'ﾘ', 'ﾙ',
+            'ﾚ', 'ﾛ', 'ﾜ', 'ﾝ'
+        )
+        val full = charArrayOf(
+            'ヲ', 'ァ', 'ィ', 'ゥ', 'ェ', 'ォ', 'ャ', 'ュ', 'ョ', 'ッ', 'ー', 'ア', 'イ',
+            'ウ', 'エ', 'オ', 'カ', 'キ', 'ク', 'ケ', 'コ', 'サ', 'シ', 'ス', 'セ', 'ソ',
+            'タ', 'チ', 'ツ', 'テ', 'ト', 'ナ', 'ニ', 'ヌ', 'ネ', 'ノ', 'ハ', 'ヒ', 'フ',
+            'ヘ', 'ホ', 'マ', 'ミ', 'ム', 'メ', 'モ', 'ヤ', 'ユ', 'ヨ', 'ラ', 'リ', 'ル',
+            'レ', 'ロ', 'ワ', 'ン'
+        )
+
+        for (index in half.indices) mapKana.put(half[index], full[index])
+        return mapKana
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(R.menu.from_tool_bar, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        Log.d("MainActivity", "Menu ${item.itemId} selected.")
         when (item.itemId) {
-            R.id.about -> {
+            R.id.about_btn -> {
                 val intentAbout = Intent(".ACTION_ABOUT")
 
                 intentAbout.putExtra("metaVer", metaVer)
                 intentAbout.putExtra("gameVer", gameVer)
                 intentAbout.putExtra("fixVer", fixVer)
-                intentAbout.putExtra("pkgVerName", packageManager.getPackageInfo(packageName, 0).versionName)
+                intentAbout.putExtra(
+                    "pkgVerName",
+                    packageManager.getPackageInfo(packageName, 0).versionName
+                )
                 startActivity(intentAbout)
             }
         }

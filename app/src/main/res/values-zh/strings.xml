@@ -3,16 +3,16 @@
 <resources>
 
     <string name="about">关于</string>
-    <string name="about_dev_text">开发者</string>
     <string name="about_dsg_text">Logo设计</string>
-    <string name="about_source">更多信息</string>
+    <string name="about_source">开源地址</string>
 
     <string name="about_ver">版本 %1$s</string>
     <string name="about_db_ver">数据库版本  %1$d.%2$d</string>
 
     <string name="uncanny_text">恭喜你发现了月之暗面！这里是一个赞助页面，如果你喜欢这个应用，可以请开发者喝一杯咖啡☕~</string>
 
-    <string name="manifest_about">代码背后</string>
     <string name="manifest_uncanny">支付宝也行</string>
+    <string name="about_release">发布地址</string>
+    <string name="about_author" translatable="false">开发者</string>
 
 </resources>

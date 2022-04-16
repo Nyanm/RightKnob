@@ -1,5 +1,6 @@
 package com.nyanm.rightknob
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +13,7 @@ class SingleMusic(
     val mid: Int,
     val name: String,
     val artist: String,
-    val yomigana: String,
+    val firstKana: Char,
     val date: Int,
     val gameVer: Int,
     val infVer: Int,
@@ -23,7 +24,7 @@ class SingleMusic(
     val mxm: Int
 )
 
-class MusicBoxAdapter(private val dataList: List<SingleMusic>) :
+class MusicBoxAdapter(private val dataList: List<SingleMusic>, private val mContext: Context) :
     RecyclerView.Adapter<MusicBoxAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -32,7 +33,7 @@ class MusicBoxAdapter(private val dataList: List<SingleMusic>) :
         val viewName: TextView = view.findViewById(R.id.text_name)
         val viewArtist: TextView = view.findViewById(R.id.text_artist)
         val viewDate: TextView = view.findViewById(R.id.text_date)
-        val viewYomigana: TextView = view.findViewById(R.id.text_yomigana)
+        val view1stKana: TextView = view.findViewById(R.id.text_1st_kana)
         val viewNOV: TextView = view.findViewById(R.id.text_nov)
         val viewADV: TextView = view.findViewById(R.id.text_adv)
         val viewEXH: TextView = view.findViewById(R.id.text_exh)
@@ -55,11 +56,12 @@ class MusicBoxAdapter(private val dataList: List<SingleMusic>) :
         holder.viewMid.text = musicItem.mid.toString()
         holder.viewName.text = musicItem.name
         holder.viewArtist.text = musicItem.artist
-        holder.viewYomigana.text = musicItem.yomigana
+        holder.view1stKana.text = musicItem.firstKana.toString()
         val intYear: Int = musicItem.date / 10000
         val intMonth: Int = (musicItem.date / 100) % 100
         val intDay: Int = musicItem.date % 100
-        holder.viewDate.text = "${intYear}-${intMonth}-${intDay}"
+        holder.viewDate.text =
+            String.format(mContext.getString(R.string.music_box_date), intYear, intMonth, intDay)
 
         // set level information
         if (musicItem.nov == 0) {

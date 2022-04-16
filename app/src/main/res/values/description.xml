@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="music_box_ic_music_des" translatable="false">Icon for music\'s name</string>
+    <string name="music_box_ic_artist_des" translatable="false">Icon for music\'s artist</string>
+    <string name="music_box_ic_calendar_des" translatable="false">Icon for music\'s date</string>
+    <string name="uncanny_img_des" translatable="false">QR code for uncanny website</string>
+    <string name="img_jk_des" translatable="false">Small size jacket</string>
+
+</resources>

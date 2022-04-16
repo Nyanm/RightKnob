@@ -3,6 +3,10 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_gray">#FFF0F0F0</color>
+    <color name="dark_gray">#FF101010</color>
+
+    <color name="ic_music_box">#FFB0B0B0</color>
 
     <color name="nov">#8D98FA</color>
     <color name="nov_text">#2F2D69</color>
@@ -12,7 +16,7 @@
     <color name="exh_text">#AC414C</color>
     <color name="inf">#F098FF</color>
     <color name="inf_text">#87377F</color>
-    <color name="grv">#FFB57C</color>
+    <color name="grv">#FD9D69</color>
     <color name="grv_text">#BC754A</color>
     <color name="hvn">#9FE9FC</color>
     <color name="hvn_text">#46869E</color>

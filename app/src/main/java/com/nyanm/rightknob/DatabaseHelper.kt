@@ -46,12 +46,7 @@ class DatabaseHelper(private val context: Context, private val versionCode: Int)
 
     private fun update(reason: String): SQLiteDatabase {
         Log.i("DBHelper", reason)
-        moveDatabase()
-        generateSPS()
-        return SQLiteDatabase.openDatabase(dbFile.path, null, SQLiteDatabase.OPEN_READONLY)
-    }
 
-    private fun moveDatabase() {
         try {
             val `is` = context.resources.openRawResource(R.raw.music)
             val os = FileOutputStream(dbFile)
@@ -67,9 +62,7 @@ class DatabaseHelper(private val context: Context, private val versionCode: Int)
         } catch (e: IOException) {
             throw RuntimeException("Raw database is missing", e)
         }
-    }
 
-    private fun generateSPS() {
         val sps: SharedPreferences = context.getSharedPreferences(spsName, Context.MODE_PRIVATE)
         val editor = sps.edit()
         editor.clear()
@@ -83,7 +76,9 @@ class DatabaseHelper(private val context: Context, private val versionCode: Int)
         }
 
         editor.apply()
+        return SQLiteDatabase.openDatabase(dbFile.path, null, SQLiteDatabase.OPEN_READONLY)
     }
+
 }
 
 // with the great help of https://www.javaer101.com/article/23538222.html

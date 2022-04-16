@@ -22,7 +22,7 @@
 
         <activity
                 android:name=".AboutActivity"
-                android:label="@string/manifest_about"
+                android:label="@string/about"
                 android:exported="false">
             <intent-filter>
                 <action android:name=".ACTION_ABOUT" />
