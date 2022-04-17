@@ -57,6 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:queryHint="@string/main_search_hint"
+                    android:iconifiedByDefault="false"
                     android:queryBackground="@null"/>
 
         </com.google.android.material.card.MaterialCardView>
