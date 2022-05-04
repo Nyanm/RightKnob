@@ -41,6 +41,7 @@ class MusicBoxAdapter(private val dataList: List<SingleMusic>, private val mCont
         val viewGRV: TextView = view.findViewById(R.id.text_grv)
         val viewHVN: TextView = view.findViewById(R.id.text_hvn)
         val viewVVD: TextView = view.findViewById(R.id.text_vvd)
+        val viewXCD: TextView = view.findViewById(R.id.text_xcd)
         val viewMXM: TextView = view.findViewById(R.id.text_mxm)
     }
 
@@ -95,6 +96,10 @@ class MusicBoxAdapter(private val dataList: List<SingleMusic>, private val mCont
                     5 -> {
                         holder.viewVVD.visibility = View.VISIBLE
                         holder.viewVVD.text = musicItem.inf.toString()
+                    }
+                    6 -> {
+                        holder.viewXCD.visibility = View.VISIBLE
+                        holder.viewXCD.text = musicItem.inf.toString()
                     }
                 }
             }

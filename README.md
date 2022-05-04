@@ -1,6 +1,6 @@
 # Right Knob
 
-An SDVX music searcher for Android.
+A Sound Voltex music searcher for Android.
 
 Just enter anything related to the song you want to search, the name, the artist, the memes. 
 You can contribute to this project by a meme pull request to enrich the searching database or give the developer advice on coding.
