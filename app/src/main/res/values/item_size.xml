@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="jacket_length">84dp</dimen>
+    <dimen name="icon_length">16dp</dimen>
+
+    <dimen name="level_box_length">20dp</dimen>
+    <dimen name="level_box_radius">3dp</dimen>
+    <dimen name="level_box_elevation">0dp</dimen>
+    <dimen name="level_box_interval">2dp</dimen>
+    <dimen name="level_box_font">14sp</dimen>
+
+</resources>
